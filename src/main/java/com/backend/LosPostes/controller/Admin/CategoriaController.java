@@ -1,57 +1,64 @@
 package com.backend.LosPostes.controller.Admin;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.backend.LosPostes.JSend.JSendResponse;
+import com.backend.LosPostes.entity.Categoria;
 import com.backend.LosPostes.service.CategoriaService;
 
 @RestController
 @RequestMapping("/admin")
 public class CategoriaController {
     
-   // @Autowired
-    //private CategoriaService categoriaService;
+   @Autowired
+    private CategoriaService categoriaService;
 
-    
-    /*
     @GetMapping(path="/listar")
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
-    public ResponseEntity<Object> getcategorias() {
+    public ResponseEntity<Object> getCategoria() {
         return JSendResponse.success(categoriaService.getCategoria());
     }
-     * @PostMapping(path="/guardar")
+
+    @PostMapping(path="/guardar")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Object> registrarcategoriao(@RequestBody categoria categoria) {
+    public ResponseEntity<Object> registrarCategoria(@RequestBody Categoria categoria) {
         try {
-            categoria savedcategoria = categoriaService.newcategoria(categoria);
-            return JSendResponse.success(savedcategoria);
+            Categoria savedCategoria = categoriaService.newCategoria(categoria);
+            return JSendResponse.success(savedCategoria);
         } catch (Exception e) {
             return JSendResponse.error(e.getMessage());
         }
     }
 
-    @PutMapping(path="/actualizar")
+    @PostMapping(path="/actualizar")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Object> actualizarcategoriao(@RequestBody categoria categoria) {
+    public ResponseEntity<Object> actualizarCategoria(@RequestBody Categoria categoria) {
         try {
-            categoria updatedcategoria = categoriaService.updatecategoria(categoria);
-            return JSendResponse.success(updatedcategoria);
+            Categoria updatedCategoria = categoriaService.updateCategoria(categoria);
+            return JSendResponse.success(updatedCategoria);
         } catch (Exception e) {
             return JSendResponse.error(e.getMessage());
         }
     }
 
-    @DeleteMapping(path="/eliminar/{categoriaId}")
+    @PostMapping(path="/inhabilitar")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Object> eliminar(@PathVariable("categoriaId") long id) {
+    public ResponseEntity<Object> inhabilitarCategoria(@PathVariable("categoriaId") Integer id) {
         try {
-            categoriaService.deletecategoria(id);
-            return JSendResponse.success("categoriao eliminado");
+            categoriaService.disableCategoria(id);
+            return JSendResponse.success("categoria inhabilitada");
         } catch (Exception e) {
             return JSendResponse.error(e.getMessage());
         }
     }
-     */
+    
     
 }

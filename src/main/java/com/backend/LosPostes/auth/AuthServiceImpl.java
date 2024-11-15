@@ -1,5 +1,7 @@
 package com.backend.LosPostes.auth;
 
+import java.util.Optional;
+
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -23,8 +25,14 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public AuthResponse registrar(RegisterRequest request) {
-        // Si no se especifica un rol, asignar ROLE_USER por defecto
-        Rol userRole = (request.getRol() != null) ? request.getRol() : Rol.ROLE_USER;
+        // Si no se especifica un rol, asignar ROLE_MESERO por defecto
+        Rol userRole = (request.getRol() != null) ? request.getRol() : Rol.ROLE_MESERO;
+
+        Optional<Usuario> existingUsuario = userRepository.findUsuarioByUsername(request.getUsername());
+
+        if (existingUsuario.isPresent()) {
+            throw new RuntimeException("Ya existe una usuario con ese username");
+        }
         
         var user = Usuario.builder()
                 .username(request.getUsername())

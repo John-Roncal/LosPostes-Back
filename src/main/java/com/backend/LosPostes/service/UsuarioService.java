@@ -8,6 +8,7 @@ import com.backend.LosPostes.auth.RegisterRequest;
 import com.backend.LosPostes.entity.Rol;
 import com.backend.LosPostes.entity.Usuario;
 import com.backend.LosPostes.repository.UsuarioRepository;
+
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -18,8 +19,8 @@ public class UsuarioService {
     private final PasswordEncoder passwordEncoder;
 
     public Usuario registrar(RegisterRequest request) {
-        // Si no se especifica un rol, asignar ROLE_USER por defecto
-       Rol userRole = (request.getRol() != null) ? request.getRol() : Rol.ROLE_USER;
+        // Si no se especifica un rol, asignar ROLE_MESERO por defecto
+       Rol userRole = (request.getRol() != null) ? request.getRol() : Rol.ROLE_MESERO;
         
         var user = Usuario.builder()
                 .username(request.getUsername())
