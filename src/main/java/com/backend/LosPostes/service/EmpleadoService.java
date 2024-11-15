@@ -32,7 +32,6 @@ public class EmpleadoService {
         updatedEmpleado.setNombre(empleado.getNombre());
         updatedEmpleado.setApellido(empleado.getApellido());
         updatedEmpleado.setCargo(empleado.getCargo());
-        //posiblemente agregar otra funcion que sea sólo para cambiar el Rol que tenga más seguridad como pedir credenciales nuevamente
 
         return empleadoRepository.save(updatedEmpleado);
     }

@@ -35,20 +35,19 @@ public class MesaService {
         return mesaRepository.save(updatedMesa);
     }
 
-    public Mesa updateEstado(Integer id, String estado) {
+    public Mesa updateCondicion(Integer id, String condicion) {
         Optional<Mesa> existingMesa = mesaRepository.findById(id);
         if (existingMesa.isEmpty()) {
             throw new RuntimeException("No se encontró la mesa");
         }
 
         Mesa updatedMesa = existingMesa.get();
-        updatedMesa.setEstado(estado);      
+        updatedMesa.setCondicion(condicion);      
 
         return mesaRepository.save(updatedMesa);
-    }
-    
+    }   
 
-    /*public void disableMesa(Integer id) {
+    public void disableMesa(Integer id) {
         Optional<Mesa> existingMesa = mesaRepository.findById(id);
 
         if (existingMesa.isEmpty()) {
@@ -58,5 +57,5 @@ public class MesaService {
         Mesa updatedMesa = existingMesa.get();
         updatedMesa.setEstado(false);
         mesaRepository.save(updatedMesa);
-    }*/
+    }
 }
