@@ -11,28 +11,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.backend.LosPostes.JSend.JSendResponse;
-import com.backend.LosPostes.entity.Categoria;
-import com.backend.LosPostes.service.CategoriaService;
+import com.backend.LosPostes.entity.Cliente;
+import com.backend.LosPostes.service.ClienteService;
 
 @RestController
-@RequestMapping("/admin/categoria")
-public class CategoriaController {
-    
-   @Autowired
-    private CategoriaService categoriaService;
+@RequestMapping("/admin/cliente")
+public class ClienteController {
+    @Autowired
+    private ClienteService clienteService;
 
     @GetMapping(path="/listar")
     @PreAuthorize("hasAnyRole('ADMIN')")
-    public ResponseEntity<Object> getCategoria() {
-        return JSendResponse.success(categoriaService.getCategoria());
+    public ResponseEntity<Object> getCliente() {
+        return JSendResponse.success(clienteService.getCliente());
     }
 
     @PostMapping(path="/guardar")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Object> registrarCategoria(@RequestBody Categoria categoria) {
+    public ResponseEntity<Object> registrarCliente(@RequestBody Cliente cliente) {
         try {
-            Categoria savedCategoria = categoriaService.newCategoria(categoria);
-            return JSendResponse.success(savedCategoria);
+            Cliente savedCliente = clienteService.newCliente(cliente);
+            return JSendResponse.success(savedCliente);
         } catch (Exception e) {
             return JSendResponse.error(e.getMessage());
         }
@@ -40,10 +39,10 @@ public class CategoriaController {
 
     @PostMapping(path="/actualizar")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Object> actualizarCategoria(@RequestBody Categoria categoria) {
+    public ResponseEntity<Object> actualizarCliente(@RequestBody Cliente cliente) {
         try {
-            Categoria updatedCategoria = categoriaService.updateCategoria(categoria);
-            return JSendResponse.success(updatedCategoria);
+            Cliente updatedCliente = clienteService.updateCliente(cliente);
+            return JSendResponse.success(updatedCliente);
         } catch (Exception e) {
             return JSendResponse.error(e.getMessage());
         }
@@ -51,12 +50,12 @@ public class CategoriaController {
 
     @PostMapping(path="/inhabilitar")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Object> inhabilitarCategoria(@PathVariable("categoriaId") Integer id) {
+    public ResponseEntity<Object> inhabilitarCliente(@PathVariable("clienteId") Integer id) {
         try {
-            categoriaService.disableCategoria(id);
-            return JSendResponse.success("categoria inhabilitada");
+            clienteService.disableCliente(id);
+            return JSendResponse.success("Cliente Inhabilitado");
         } catch (Exception e) {
             return JSendResponse.error(e.getMessage());
         }
-    }   
+    }
 }

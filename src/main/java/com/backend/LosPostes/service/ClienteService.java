@@ -2,8 +2,10 @@ package com.backend.LosPostes.service;
 
 import java.util.List;
 import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.backend.LosPostes.entity.Cliente;
 import com.backend.LosPostes.repository.ClienteRepository;
 
@@ -12,11 +14,11 @@ public class ClienteService {
     @Autowired
     private ClienteRepository clienteRepository;
 
-    public List<Cliente> getcliente() {
+    public List<Cliente> getCliente() {
         return this.clienteRepository.findAll();
     }
 
-    public Cliente newcliente(Cliente cliente) {
+    public Cliente newCliente(Cliente cliente) {
         Optional<Cliente> existingCliente = clienteRepository.findClienteByNombre(cliente.getNombre());
 
         if (existingCliente.isPresent() && cliente.getClienteID() == null) {
@@ -26,7 +28,7 @@ public class ClienteService {
         return clienteRepository.save(cliente);
     }
 
-    public Cliente updatecliente(Cliente cliente) {
+    public Cliente updateCliente(Cliente cliente) {
         Optional<Cliente> existingCliente = clienteRepository.findById(cliente.getClienteID());
 
         if (existingCliente.isEmpty()) {
@@ -42,7 +44,7 @@ public class ClienteService {
         return clienteRepository.save(updatedCliente);
     }
 
-    public void disablecliente(Integer id) {
+    public void disableCliente(Integer id) {
         Optional<Cliente> existingCliente = clienteRepository.findById(id);
 
         if (existingCliente.isEmpty()) {

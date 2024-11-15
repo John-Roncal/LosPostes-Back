@@ -4,35 +4,33 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.backend.LosPostes.JSend.JSendResponse;
-import com.backend.LosPostes.entity.Categoria;
-import com.backend.LosPostes.service.CategoriaService;
+import com.backend.LosPostes.entity.Mesa;
+import com.backend.LosPostes.service.MesaService;
 
 @RestController
-@RequestMapping("/admin/categoria")
-public class CategoriaController {
-    
-   @Autowired
-    private CategoriaService categoriaService;
+@RequestMapping("/admin/mesa")
+public class MesaController {
+    @Autowired
+    private MesaService mesaService;
 
     @GetMapping(path="/listar")
     @PreAuthorize("hasAnyRole('ADMIN')")
-    public ResponseEntity<Object> getCategoria() {
-        return JSendResponse.success(categoriaService.getCategoria());
+    public ResponseEntity<Object> getMesa() {
+        return JSendResponse.success(mesaService.getMesa());
     }
 
     @PostMapping(path="/guardar")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Object> registrarCategoria(@RequestBody Categoria categoria) {
+    public ResponseEntity<Object> registrarMesa(@RequestBody Mesa mesa) {
         try {
-            Categoria savedCategoria = categoriaService.newCategoria(categoria);
-            return JSendResponse.success(savedCategoria);
+            Mesa savedMesa = mesaService.newMesa(mesa);
+            return JSendResponse.success(savedMesa);
         } catch (Exception e) {
             return JSendResponse.error(e.getMessage());
         }
@@ -40,23 +38,23 @@ public class CategoriaController {
 
     @PostMapping(path="/actualizar")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Object> actualizarCategoria(@RequestBody Categoria categoria) {
+    public ResponseEntity<Object> actualizarMesa(@RequestBody Mesa mesa) {
         try {
-            Categoria updatedCategoria = categoriaService.updateCategoria(categoria);
-            return JSendResponse.success(updatedCategoria);
+            Mesa updatedMesa = mesaService.updateMesa(mesa);
+            return JSendResponse.success(updatedMesa);
         } catch (Exception e) {
             return JSendResponse.error(e.getMessage());
         }
     }
 
-    @PostMapping(path="/inhabilitar")
+    /*@PostMapping(path="/inhabilitar")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Object> inhabilitarCategoria(@PathVariable("categoriaId") Integer id) {
+    public ResponseEntity<Object> inhabilitarMesa(@PathVariable("mesaId") Integer id) {
         try {
-            categoriaService.disableCategoria(id);
-            return JSendResponse.success("categoria inhabilitada");
+            mesaService.disableMesa(id);
+            return JSendResponse.success("Mesa Inhabilitado");
         } catch (Exception e) {
             return JSendResponse.error(e.getMessage());
         }
-    }   
+    }*/
 }
