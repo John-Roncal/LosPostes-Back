@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.backend.LosPostes.entity.Categoria;
 import com.backend.LosPostes.repository.CategoriaRepository;
 
@@ -14,7 +15,7 @@ public class CategoriaService {
     private CategoriaRepository categoriaRepository;
 
     public List<Categoria> getCategoria() {
-        return this.categoriaRepository.findAll();
+        return this.categoriaRepository.findAllActivos();
     }
 
     public Categoria newCategoria(Categoria categoria) {
@@ -24,7 +25,13 @@ public class CategoriaService {
             throw new RuntimeException("Ya existe una categoria con ese nombre");
         }
 
-        return categoriaRepository.save(categoria);
+        var nuevaCategoria = Categoria.builder()
+            .nombre(categoria.getNombre())
+            .descripcion(categoria.getDescripcion())
+            .estado(true)
+            .build();
+
+        return categoriaRepository.save(nuevaCategoria);
     }
 
     public Categoria updateCategoria(Categoria categoria) {
@@ -41,8 +48,8 @@ public class CategoriaService {
         return categoriaRepository.save(updatedCategoria);
     }
 
-    public void disableCategoria(Integer id) {
-        Optional<Categoria> existingCategoria = categoriaRepository.findById(id);
+    public void disableCategoria(Categoria categoria) {
+        Optional<Categoria> existingCategoria = categoriaRepository.findById(categoria.getCategoriaID());
 
         if (existingCategoria.isEmpty()) {
             throw new RuntimeException("No se encontró la categoria a inhabilitar");
