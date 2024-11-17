@@ -15,11 +15,17 @@ public class MesaService {
     private MesaRepository mesaRepository;
 
     public List<Mesa> getMesa() {
-        return this.mesaRepository.findAll();
+        return this.mesaRepository.findAllActivos();
     }
 
     public Mesa newMesa(Mesa mesa) {
-        return mesaRepository.save(mesa);
+        var nuevaMesa = Mesa.builder()
+            .numero(mesa.getNumero())
+            .capacidad(mesa.getCapacidad())
+            .condicion(mesa.getCondicion())
+            .estado(true)
+            .build();
+        return mesaRepository.save(nuevaMesa);
     }
 
     public Mesa updateMesa(Mesa mesa) {

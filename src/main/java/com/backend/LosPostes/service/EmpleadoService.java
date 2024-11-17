@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.backend.LosPostes.entity.Empleado;
 import com.backend.LosPostes.repository.EmpleadoRepository;
 
@@ -14,11 +15,19 @@ public class EmpleadoService {
     private EmpleadoRepository empleadoRepository;
 
     public List<Empleado> getEmpleado() {
-        return this.empleadoRepository.findAll();
+        return this.empleadoRepository.findAllActivos();
     }
 
     public Empleado newEmpleado(Empleado empleado) {
-        return empleadoRepository.save(empleado);
+        var nuevoEmpleado = Empleado.builder()
+            .dni(empleado.getDni())
+            .nombre(empleado.getNombre())
+            .apellido(empleado.getApellido())
+            .cargo(empleado.getCargo())
+            .estado(true)
+            .build();
+
+        return empleadoRepository.save(nuevoEmpleado);
     }
 
     public Empleado updateEmpleado(Empleado empleado) {

@@ -1,10 +1,11 @@
 package com.backend.LosPostes.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.backend.LosPostes.auth.RegisterRequest;
 import com.backend.LosPostes.entity.Rol;
 import com.backend.LosPostes.entity.Usuario;
 import com.backend.LosPostes.repository.UsuarioRepository;
@@ -18,13 +19,17 @@ public class UsuarioService {
     private final UsuarioRepository usuarioRepository;
     private final PasswordEncoder passwordEncoder;
 
-    public Usuario registrar(RegisterRequest request) {
+    public List<Usuario> getUsuario() {
+        return this.usuarioRepository.findAllActivos();
+    }
+
+    public Usuario registrar(Usuario usuario) {
         // Si no se especifica un rol, asignar ROLE_MESERO por defecto
-       Rol userRole = (request.getRol() != null) ? request.getRol() : Rol.ROLE_MESERO;
+       Rol userRole = (usuario.getRol() != null) ? usuario.getRol() : Rol.ROLE_MESERO;
         
         var user = Usuario.builder()
-                .username(request.getUsername())
-                .password(passwordEncoder.encode(request.getPassword()))
+                .username(usuario.getUsername())
+                .password(passwordEncoder.encode(usuario.getPassword()))
                 .estado(true)
                 .rol(userRole)
                 .build();

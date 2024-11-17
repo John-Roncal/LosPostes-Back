@@ -21,14 +21,21 @@ public class ProductoService {
     private CategoriaRepository categoriaRepository;
 
     public List<Producto> getProducto() {
-        return this.productoRepository.findAll();
+        return this.productoRepository.findAllActivos();
     }
     
-    public Producto createProducto(Producto producto) {
+    public Producto newProducto(Producto producto) {
         if (!categoriaRepository.existsById(producto.getCategoriaID())) {
             throw new EntityNotFoundException("Categoria no encontrada");
-        }     
-        return productoRepository.save(producto);
+        }
+        var nuevoProducto = Producto.builder()
+            .nombre(producto.getNombre())
+            .descripcion(producto.getDescripcion())
+            .precio(producto.getPrecio())
+            .categoriaID(producto.getCategoriaID())
+            .estado(true)
+            .build();  
+        return productoRepository.save(nuevoProducto);
     }
 
     public Producto updateProducto(Producto producto) {

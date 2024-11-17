@@ -12,28 +12,28 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.backend.LosPostes.JSend.JSendResponse;
-import com.backend.LosPostes.entity.Categoria;
-import com.backend.LosPostes.service.CategoriaService;
+import com.backend.LosPostes.entity.Producto;
+import com.backend.LosPostes.service.ProductoService;
 
 @RestController
-@RequestMapping("/admin/categoria")
+@RequestMapping("/admin/producto")
 @CrossOrigin(origins = "http://localhost:4200")
-public class CategoriaController { 
-   @Autowired
-    private CategoriaService categoriaService;
+public class ProductoController {
+    @Autowired
+    private ProductoService productoService;
 
     @GetMapping(path="/listar")
     @PreAuthorize("hasAnyRole('ADMIN')")
-    public ResponseEntity<Object> getCategoria() {
-        return JSendResponse.success(categoriaService.getCategoria());
+    public ResponseEntity<Object> getProducto() {
+        return JSendResponse.success(productoService.getProducto());
     }
 
     @PostMapping(path="/guardar")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Object> registrarCategoria(@RequestBody Categoria categoria) {
+    public ResponseEntity<Object> registrarProducto(@RequestBody Producto producto) {
         try {
-            Categoria savedCategoria = categoriaService.newCategoria(categoria);
-            return JSendResponse.success(savedCategoria);
+            Producto savedProducto = productoService.newProducto(producto);
+            return JSendResponse.success(savedProducto);
         } catch (Exception e) {
             return JSendResponse.error(e.getMessage());
         }
@@ -41,21 +41,21 @@ public class CategoriaController {
 
     @PostMapping(path="/actualizar")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Object> actualizarCategoria(@RequestBody Categoria categoria) {
+    public ResponseEntity<Object> actualizarProducto(@RequestBody Producto producto) {
         try {
-            Categoria updatedCategoria = categoriaService.updateCategoria(categoria);
-            return JSendResponse.success(updatedCategoria);
+            Producto updatedProducto = productoService.updateProducto(producto);
+            return JSendResponse.success(updatedProducto);
         } catch (Exception e) {
             return JSendResponse.error(e.getMessage());
         }
     }
 
-    @GetMapping(path="/inhabilitar/{categoriaId}")
+    @GetMapping(path="/inhabilitar/{productoId}")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Object> inhabilitarCategoria(@PathVariable("categoriaId") Integer id) {
+    public ResponseEntity<Object> inhabilitarProducto(@PathVariable("productoId") Integer id) {
         try {
-            categoriaService.disableCategoria(id);
-            return JSendResponse.success("Categoria inhabilitada");
+            productoService.disableProducto(id);
+            return JSendResponse.success("Producto inhabilitado");
         } catch (Exception e) {
             return JSendResponse.error(e.getMessage());
         }

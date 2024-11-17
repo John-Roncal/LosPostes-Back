@@ -15,17 +15,25 @@ public class ClienteService {
     private ClienteRepository clienteRepository;
 
     public List<Cliente> getCliente() {
-        return this.clienteRepository.findAll();
+        return this.clienteRepository.findAllActivos();
     }
 
     public Cliente newCliente(Cliente cliente) {
-        Optional<Cliente> existingCliente = clienteRepository.findClienteByNombre(cliente.getNombre());
+        Optional<Cliente> existingCliente = clienteRepository.findClienteByDni(cliente.getDni());
 
         if (existingCliente.isPresent() && cliente.getClienteID() == null) {
-            throw new RuntimeException("Ya existe un cliente con ese nombre");
+            throw new RuntimeException("Ya existe un cliente con ese DNI");
         }
 
-        return clienteRepository.save(cliente);
+        var nuevoCliente = Cliente.builder()
+            .dni(cliente.getDni())
+            .nombre(cliente.getNombre())
+            .apellido(cliente.getApellido())
+            .telefono(cliente.getTelefono())
+            .estado(true)
+            .build();
+
+        return clienteRepository.save(nuevoCliente);
     }
 
     public Cliente updateCliente(Cliente cliente) {
