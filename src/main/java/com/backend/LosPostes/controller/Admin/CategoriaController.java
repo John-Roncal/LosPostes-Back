@@ -52,7 +52,7 @@ public class CategoriaController {
         }
     }
 
-    @PostMapping(path="/inhabilitar/{categoriaId}")
+    @GetMapping(path="/inhabilitar/{categoriaId}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Object> inhabilitarCategoria(@PathVariable("categoriaId") Integer id) {
         try {

@@ -48,7 +48,7 @@ public class ClienteController {
         }
     }
 
-    @PostMapping(path="/inhabilitar/{clienteId}")
+    @GetMapping(path="/inhabilitar/{clienteId}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Object> inhabilitarCliente(@PathVariable("clienteId") Integer id) {
         try {

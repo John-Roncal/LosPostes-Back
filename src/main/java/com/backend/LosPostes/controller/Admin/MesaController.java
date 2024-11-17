@@ -59,7 +59,7 @@ public class MesaController {
         }
     }
 
-    @PostMapping(path="/inhabilitar/{mesaId}")
+    @GetMapping(path="/inhabilitar/{mesaId}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Object> inhabilitarMesa(@PathVariable("mesaId") Integer id) {
         try {
