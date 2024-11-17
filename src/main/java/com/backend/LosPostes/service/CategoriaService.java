@@ -48,8 +48,8 @@ public class CategoriaService {
         return categoriaRepository.save(updatedCategoria);
     }
 
-    public void disableCategoria(Categoria categoria) {
-        Optional<Categoria> existingCategoria = categoriaRepository.findById(categoria.getCategoriaID());
+    public void disableCategoria(Integer id) {
+        Optional<Categoria> existingCategoria = categoriaRepository.findById(id);
 
         if (existingCategoria.isEmpty()) {
             throw new RuntimeException("No se encontró la categoria a inhabilitar");
