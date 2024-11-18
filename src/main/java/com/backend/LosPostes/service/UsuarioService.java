@@ -32,6 +32,7 @@ public class UsuarioService {
                 .password(passwordEncoder.encode(usuario.getPassword()))
                 .estado(true)
                 .rol(userRole)
+                .empleadoID(usuario.getEmpleadoID())
                 .build();
         
         return usuarioRepository.save(user);
