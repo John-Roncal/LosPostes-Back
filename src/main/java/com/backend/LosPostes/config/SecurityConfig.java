@@ -36,8 +36,8 @@ public class SecurityConfig {
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                 .requestMatchers("/login/**").permitAll()
-                .requestMatchers("/mozos/**").hasAnyRole("USER", "ADMIN")
-                .requestMatchers("/admin/**").hasRole("ADMIN")
+                .requestMatchers("/mozos/**").hasAnyRole("MESERO", "ADMIN")
+                .requestMatchers("/admin/**").hasAnyRole("MESERO", "ADMIN")
                 .anyRequest().authenticated()
             )
             .sessionManagement(sess -> 

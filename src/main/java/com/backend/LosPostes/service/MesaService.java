@@ -22,7 +22,7 @@ public class MesaService {
         var nuevaMesa = Mesa.builder()
             .numero(mesa.getNumero())
             .capacidad(mesa.getCapacidad())
-            .condicion(mesa.getCondicion())
+            .condicion("Disponible")
             .estado(true)
             .build();
         return mesaRepository.save(nuevaMesa);

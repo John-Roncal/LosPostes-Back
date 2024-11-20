@@ -31,6 +31,9 @@ public class Orden {
     @Column(name = "Condicion", length=20) 
     private String condicion;
 
+    @Column(name = "MontoTotal") 
+    private Double montoTotal;
+
     @Column(name = "EmpleadoID") 
     private Integer empleadoID;
 

@@ -17,7 +17,7 @@ import com.backend.LosPostes.service.CategoriaService;
 
 @RestController
 @RequestMapping("/admin/categoria")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin
 public class CategoriaController { 
    @Autowired
     private CategoriaService categoriaService;

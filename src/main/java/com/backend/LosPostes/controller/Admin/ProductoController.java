@@ -17,7 +17,7 @@ import com.backend.LosPostes.service.ProductoService;
 
 @RestController
 @RequestMapping("/admin/producto")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin
 public class ProductoController {
     @Autowired
     private ProductoService productoService;
