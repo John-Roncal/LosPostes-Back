@@ -25,14 +25,14 @@ public class ProductoService {
     }
     
     public Producto newProducto(Producto producto) {
-        if (!categoriaRepository.existsById(producto.getCategoriaID())) {
+        if (!categoriaRepository.existsById(producto.getSubcategoriaID())) {
             throw new EntityNotFoundException("Categoria no encontrada");
         }
         var nuevoProducto = Producto.builder()
             .nombre(producto.getNombre())
             .descripcion(producto.getDescripcion())
             .precio(producto.getPrecio())
-            .categoriaID(producto.getCategoriaID())
+            .subcategoriaID(producto.getSubcategoriaID())
             .estado(true)
             .build();  
         return productoRepository.save(nuevoProducto);
@@ -48,7 +48,7 @@ public class ProductoService {
         updatedProducto.setNombre(producto.getNombre());
         updatedProducto.setDescripcion(producto.getDescripcion());
         updatedProducto.setPrecio(producto.getPrecio());
-        updatedProducto.setCategoriaID(producto.getCategoriaID());
+        updatedProducto.setSubcategoriaID(producto.getSubcategoriaID());
 
         return productoRepository.save(updatedProducto);
     }

@@ -1,12 +1,14 @@
 package com.backend.LosPostes.service;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.backend.LosPostes.data.model.entity.Subcategoria;
 import com.backend.LosPostes.data.repository.SubcategoriaRepository;
 
-import java.util.List;
 
 @Service
 public class SubcategoriaService {
@@ -19,7 +21,20 @@ public class SubcategoriaService {
     }
     
     public Subcategoria newSubcategoria(Subcategoria subcategoria) {
-        return subcategoriaRepository.save(subcategoria);
+        Optional<Subcategoria> existingSubcategoria = subcategoriaRepository.findSubcategoriaByNombre(subcategoria.getNombre());
+
+        if (existingSubcategoria.isPresent() && subcategoria.getSubcategoriaID() == null) {
+            throw new RuntimeException("Ya existe una subcategoria con ese nombre");
+        }
+
+        var nuevaSubcategoria = Subcategoria.builder()
+            .nombre(subcategoria.getNombre())
+            .descripcion(subcategoria.getDescripcion())
+            .estado(true)
+            .categoriaID(subcategoria.getCategoriaID())
+            .build();
+
+        return subcategoriaRepository.save(nuevaSubcategoria);
     }
     
     public Subcategoria updateSubcategoria(Subcategoria subcategoria) {

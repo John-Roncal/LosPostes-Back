@@ -1,5 +1,7 @@
 package com.backend.LosPostes.data.model.entity;
 
+import java.sql.Date;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -12,29 +14,26 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "Productos")
+@Table(name = "Ordenes")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Producto {
+public class Orden {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ProductoID")
-    private Integer productoID;
+    @Column(name = "OrdenID")
+    private Integer ordenID;
     
-    @Column(name = "Nombre", length = 100)
-    private String nombre;
+    @Column(name = "FechaOrden")
+    private Date fecha;
     
-    @Column(name = "Descripcion") 
-    private String descripcion;
+    @Column(name = "Condicion", length=20) 
+    private String condicion;
 
-    @Column(name = "Precio") 
-    private float precio;
+    @Column(name = "EmpleadoID") 
+    private Integer empleadoID;
 
-    @Column(name = "SubcategoriaID") 
-    private Integer subcategoriaID;
-
-    @Column(name = "Estado") 
-    private boolean estado;
+    @Column(name = "MesaID") 
+    private Integer mesaID;
 }
