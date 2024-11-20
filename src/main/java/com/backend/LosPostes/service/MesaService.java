@@ -6,8 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.backend.LosPostes.entity.Mesa;
-import com.backend.LosPostes.repository.MesaRepository;
+import com.backend.LosPostes.data.model.entity.Mesa;
+import com.backend.LosPostes.data.repository.MesaRepository;
 
 @Service
 public class MesaService {

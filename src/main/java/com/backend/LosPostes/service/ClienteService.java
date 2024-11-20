@@ -6,8 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.backend.LosPostes.entity.Cliente;
-import com.backend.LosPostes.repository.ClienteRepository;
+import com.backend.LosPostes.data.model.entity.Cliente;
+import com.backend.LosPostes.data.repository.ClienteRepository;
 
 @Service
 public class ClienteService {

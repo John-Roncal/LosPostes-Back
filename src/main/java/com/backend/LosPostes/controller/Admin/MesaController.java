@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.backend.LosPostes.JSend.JSendResponse;
-import com.backend.LosPostes.entity.Mesa;
+import com.backend.LosPostes.data.model.entity.Mesa;
+import com.backend.LosPostes.exception.JSend.JSendResponse;
 import com.backend.LosPostes.service.MesaService;
 
 @RestController

@@ -6,8 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.backend.LosPostes.entity.Empleado;
-import com.backend.LosPostes.repository.EmpleadoRepository;
+import com.backend.LosPostes.data.model.entity.Empleado;
+import com.backend.LosPostes.data.repository.EmpleadoRepository;
 
 @Service
 public class EmpleadoService {

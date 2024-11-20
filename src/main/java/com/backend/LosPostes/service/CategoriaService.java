@@ -6,8 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.backend.LosPostes.entity.Categoria;
-import com.backend.LosPostes.repository.CategoriaRepository;
+import com.backend.LosPostes.data.model.entity.Categoria;
+import com.backend.LosPostes.data.repository.CategoriaRepository;
 
 @Service
 public class CategoriaService {
