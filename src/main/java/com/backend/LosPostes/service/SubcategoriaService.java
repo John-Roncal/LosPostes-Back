@@ -23,7 +23,7 @@ public class SubcategoriaService {
     }
     
     public Subcategoria updateSubcategoria(Subcategoria subcategoria) {
-        if (!subcategoriaRepository.existsById(subcategoria.getId())) {
+        if (!subcategoriaRepository.existsById(subcategoria.getSubcategoriaID())) {
             throw new RuntimeException("Subcategoria no encontrada");
         }
         return subcategoriaRepository.save(subcategoria);
