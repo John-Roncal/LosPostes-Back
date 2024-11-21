@@ -34,9 +34,9 @@ public class Orden {
     @Column(name = "MontoTotal") 
     private Double montoTotal;
 
-    @Column(name = "EmpleadoID") 
+    @Column(name = "Empleados_EmpleadoID") 
     private Integer empleadoID;
 
-    @Column(name = "MesaID") 
+    @Column(name = "Mesas_MesaID") 
     private Integer mesaID;
 }

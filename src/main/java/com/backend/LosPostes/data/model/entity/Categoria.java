@@ -23,10 +23,10 @@ import lombok.NoArgsConstructor;
 public class Categoria { 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "CategoriaID") // Especifica el nombre exacto de la columna
+    @Column(name = "CategoriaID")
     private Integer categoriaID;
     
-    @Column(name = "Nombre", length = 50) // Especifica el nombre y longitud de la columna
+    @Column(name = "Nombre", length = 50)
     private String nombre;
     
     @Column(name = "Descripcion") 

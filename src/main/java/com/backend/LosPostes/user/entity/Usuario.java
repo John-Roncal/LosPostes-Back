@@ -29,10 +29,10 @@ import lombok.NoArgsConstructor;
 public class Usuario implements UserDetails{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "UsuarioID") // Especifica el nombre exacto de la columna
+    @Column(name = "UsuarioID")
     private Integer usuarioID; 
     
-    @Column(name = "UserName", length = 20) // Especifica el nombre y longitud de la columna
+    @Column(name = "Username", length = 20)
     private String username;
     
     @Column(name = "Password", length = 100) 
@@ -41,11 +41,11 @@ public class Usuario implements UserDetails{
     @Column(name = "Estado") 
     private boolean estado;
 
-    @Column(name = "EmpleadoID")
+    @Column(name = "Empleados_EmpleadoID")
     private Integer empleadoID;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "Roles")
+    @Column(name = "Roles_RolID")
     private Rol rol;
 
     @Override
