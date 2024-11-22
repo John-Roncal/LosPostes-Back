@@ -1,6 +1,6 @@
 package com.backend.LosPostes.data.model.entity;
 
-import java.sql.Date;
+import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -26,7 +26,7 @@ public class Orden {
     private Integer ordenID;
     
     @Column(name = "fechaorden")
-    private Date fecha;
+    private LocalDateTime fecha;
     
     @Column(name = "condicion", length=20) 
     private String condicion;

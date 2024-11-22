@@ -30,7 +30,7 @@ public class Producto {
     private String descripcion;
 
     @Column(name = "precio") 
-    private float precio;
+    private Double precio;
 
     @Column(name = "subcategorias_subcategoriaid") 
     private Integer subcategoriaID;

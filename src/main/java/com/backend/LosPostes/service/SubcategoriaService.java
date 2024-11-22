@@ -50,4 +50,4 @@ public class SubcategoriaService {
         subcategoria.setEstado(false);
         subcategoriaRepository.save(subcategoria);
     }
-} 
+}
