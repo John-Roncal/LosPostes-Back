@@ -11,28 +11,27 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
 @Entity
-@Table(name = "SubCategorias")
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Subcategoria {
-    
+@Table(name = "subcategorias")
+public class SubCategoria {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "SubCategoriaID")
-    private Integer subcategoriaID;
-
-    @Column(name = "Nombre", length=50)
+    @Column(name = "subcategoriaid")
+    private Integer subCategoriaId;
+    
+    @Column(name = "nombre")
     private String nombre;
-
-    @Column(name = "Descripcion")
+    
+    @Column(name = "descripcion")
     private String descripcion;
-
-    @Column(name = "Estado")
+    
+    @Column(name = "estado")
     private Boolean estado;
-
-    @Column(name = "Categorias_CategoriaID")
+    
+    @Column(name = "categorias_categoriaid")
     private Integer categoriaID;
-} 
+}

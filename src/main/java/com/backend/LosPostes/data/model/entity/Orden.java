@@ -14,7 +14,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "Ordenes")
+@Table(name = "ordenes")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -22,21 +22,21 @@ import lombok.NoArgsConstructor;
 public class Orden {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "OrdenID")
+    @Column(name = "ordenid")
     private Integer ordenID;
     
-    @Column(name = "FechaOrden")
+    @Column(name = "fechaorden")
     private Date fecha;
     
-    @Column(name = "Condicion", length=20) 
+    @Column(name = "condicion", length=20) 
     private String condicion;
 
-    @Column(name = "MontoTotal") 
+    @Column(name = "montototal") 
     private Double montoTotal;
 
-    @Column(name = "Empleados_EmpleadoID") 
+    @Column(name = "empleados_empleadoid") 
     private Integer empleadoID;
 
-    @Column(name = "Mesas_MesaID") 
+    @Column(name = "mesas_mesaid") 
     private Integer mesaID;
 }

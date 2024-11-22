@@ -12,7 +12,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "Clientes")
+@Table(name = "clientes")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -20,21 +20,21 @@ import lombok.NoArgsConstructor;
 public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ClienteID")
+    @Column(name = "clienteif")
     private Integer clienteID;
     
-    @Column(name = "DNI", length = 8)
+    @Column(name = "dni", length = 8)
     private String dni;
     
-    @Column(name = "Nombre", length = 50) 
+    @Column(name = "nombre", length = 50) 
     private String nombre;
 
-    @Column(name = "Apellido", length = 50) 
+    @Column(name = "apellido", length = 50) 
     private String apellido;
 
-    @Column(name = "Telefono", length = 9)
+    @Column(name = "telefono", length = 9)
     private String telefono;
 
-    @Column(name = "Estado") 
+    @Column(name = "estado") 
     private boolean estado;
 }

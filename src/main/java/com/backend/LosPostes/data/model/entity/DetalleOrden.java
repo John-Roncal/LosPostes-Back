@@ -13,28 +13,28 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Data
-@Table(name = "DetalleOrdenes")
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class OrdenDetalle {
+@Table(name = "detalleordenes")
+public class DetalleOrden {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "DetalleOrdenID")
-    private Integer ordenDetalleID;
+    @Column(name = "detalleordenid")
+    private Integer detalleOrdenId;
     
-    @Column(name = "Productos_ProductoID") 
-    private Integer productoID;
-
-    @Column(name = "Cantidad") 
+    @Column(name = "cantidad")
     private Integer cantidad;
-
-    @Column(name = "SubTotal") 
+    
+    @Column(name = "subtotal")
     private Double subTotal;
-
-    @Column(name = "Comentario") 
+    
+    @Column(name = "comentario")
     private String comentario;
-
-    @Column(name = "Ordenes_OrdenID") 
+    
+    @Column(name = "productos_productoid")
+    private Integer productoID;
+    
+    @Column(name = "ordenes_ordenid")
     private Integer ordenID;
 }

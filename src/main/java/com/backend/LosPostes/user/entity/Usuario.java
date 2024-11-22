@@ -21,7 +21,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "Usuarios")
+@Table(name = "usuarios")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -29,23 +29,23 @@ import lombok.NoArgsConstructor;
 public class Usuario implements UserDetails{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "UsuarioID")
+    @Column(name = "usuarioid")
     private Integer usuarioID; 
     
-    @Column(name = "Username", length = 20)
+    @Column(name = "username", length = 20)
     private String username;
     
-    @Column(name = "Password", length = 100) 
+    @Column(name = "password", length = 100) 
     private String password;
     
-    @Column(name = "Estado") 
+    @Column(name = "estado") 
     private boolean estado;
 
-    @Column(name = "Empleados_EmpleadoID")
+    @Column(name = "empleados_empleadoid")
     private Integer empleadoID;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "Roles_RolID")
+    @Column(name = "roles_rolid")
     private Rol rol;
 
     @Override

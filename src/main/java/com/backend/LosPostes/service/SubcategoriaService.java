@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.backend.LosPostes.data.model.entity.Subcategoria;
+import com.backend.LosPostes.data.model.entity.SubCategoria;
 import com.backend.LosPostes.data.repository.SubcategoriaRepository;
 
 
@@ -16,18 +16,18 @@ public class SubcategoriaService {
     @Autowired
     private SubcategoriaRepository subcategoriaRepository;
     
-    public List<Subcategoria> getSubcategorias() {
+    public List<SubCategoria> getSubcategorias() {
         return subcategoriaRepository.findByEstadoTrue();
     }
     
-    public Subcategoria newSubcategoria(Subcategoria subcategoria) {
-        Optional<Subcategoria> existingSubcategoria = subcategoriaRepository.findSubcategoriaByNombre(subcategoria.getNombre());
+    public SubCategoria newSubcategoria(SubCategoria subcategoria) {
+        Optional<SubCategoria> existingSubcategoria = subcategoriaRepository.findSubcategoriaByNombre(subcategoria.getNombre());
 
-        if (existingSubcategoria.isPresent() && subcategoria.getSubcategoriaID() == null) {
+        if (existingSubcategoria.isPresent() && subcategoria.getSubCategoriaId() == null) {
             throw new RuntimeException("Ya existe una subcategoria con ese nombre");
         }
 
-        var nuevaSubcategoria = Subcategoria.builder()
+        var nuevaSubcategoria = SubCategoria.builder()
             .nombre(subcategoria.getNombre())
             .descripcion(subcategoria.getDescripcion())
             .estado(true)
@@ -37,15 +37,15 @@ public class SubcategoriaService {
         return subcategoriaRepository.save(nuevaSubcategoria);
     }
     
-    public Subcategoria updateSubcategoria(Subcategoria subcategoria) {
-        if (!subcategoriaRepository.existsById(subcategoria.getSubcategoriaID())) {
+    public SubCategoria updateSubcategoria(SubCategoria subcategoria) {
+        if (!subcategoriaRepository.existsById(subcategoria.getSubCategoriaId())) {
             throw new RuntimeException("Subcategoria no encontrada");
         }
         return subcategoriaRepository.save(subcategoria);
     }
     
     public void disableSubcategoria(Integer id) {
-        Subcategoria subcategoria = subcategoriaRepository.findById(id)
+        SubCategoria subcategoria = subcategoriaRepository.findById(id)
             .orElseThrow(() -> new RuntimeException("Subcategoria no encontrada"));
         subcategoria.setEstado(false);
         subcategoriaRepository.save(subcategoria);

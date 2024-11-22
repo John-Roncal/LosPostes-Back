@@ -14,7 +14,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "Categorias")
+@Table(name = "categorias")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -23,15 +23,15 @@ import lombok.NoArgsConstructor;
 public class Categoria { 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "CategoriaID")
+    @Column(name = "categoriaid")
     private Integer categoriaID;
     
-    @Column(name = "Nombre", length = 50)
+    @Column(name = "nombre", length = 50)
     private String nombre;
     
-    @Column(name = "Descripcion") 
+    @Column(name = "descripcion") 
     private String descripcion;
 
-    @Column(name = "Estado") 
+    @Column(name = "estado") 
     private boolean estado;
 }

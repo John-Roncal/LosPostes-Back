@@ -5,7 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import com.backend.LosPostes.data.model.entity.Subcategoria;
+import com.backend.LosPostes.data.model.entity.SubCategoria;
 import com.backend.LosPostes.exception.JSend.JSendResponse;
 import com.backend.LosPostes.service.SubcategoriaService;
 
@@ -25,9 +25,9 @@ public class SubcategoriaController {
 
     @PostMapping(path="/guardar")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Object> registrarSubcategoria(@RequestBody Subcategoria subcategoria) {
+    public ResponseEntity<Object> registrarSubcategoria(@RequestBody SubCategoria subcategoria) {
         try {
-            Subcategoria savedSubcategoria = subcategoriaService.newSubcategoria(subcategoria);
+            SubCategoria savedSubcategoria = subcategoriaService.newSubcategoria(subcategoria);
             return JSendResponse.success(savedSubcategoria);
         } catch (Exception e) {
             return JSendResponse.error(e.getMessage());
@@ -36,9 +36,9 @@ public class SubcategoriaController {
 
     @PostMapping(path="/actualizar")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Object> actualizarSubcategoria(@RequestBody Subcategoria subcategoria) {
+    public ResponseEntity<Object> actualizarSubcategoria(@RequestBody SubCategoria subcategoria) {
         try {
-            Subcategoria updatedSubcategoria = subcategoriaService.updateSubcategoria(subcategoria);
+            SubCategoria updatedSubcategoria = subcategoriaService.updateSubcategoria(subcategoria);
             return JSendResponse.success(updatedSubcategoria);
         } catch (Exception e) {
             return JSendResponse.error(e.getMessage());

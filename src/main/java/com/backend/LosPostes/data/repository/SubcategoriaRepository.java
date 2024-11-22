@@ -6,11 +6,11 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.backend.LosPostes.data.model.entity.Subcategoria;
+import com.backend.LosPostes.data.model.entity.SubCategoria;
 
 @Repository
-public interface SubcategoriaRepository extends JpaRepository<Subcategoria, Integer> {
-    Optional<Subcategoria> findSubcategoriaByNombre(String nombre);
+public interface SubcategoriaRepository extends JpaRepository<SubCategoria, Integer> {
+    Optional<SubCategoria> findSubcategoriaByNombre(String nombre);
     
-    List<Subcategoria> findByEstadoTrue();  
+    List<SubCategoria> findByEstadoTrue();  
 } 

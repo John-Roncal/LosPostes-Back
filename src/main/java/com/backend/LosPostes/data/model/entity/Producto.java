@@ -12,7 +12,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "Productos")
+@Table(name = "productos")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -20,21 +20,21 @@ import lombok.NoArgsConstructor;
 public class Producto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ProductoID")
+    @Column(name = "productoid")
     private Integer productoID;
     
-    @Column(name = "Nombre", length = 100)
+    @Column(name = "nombre", length = 100)
     private String nombre;
     
-    @Column(name = "Descripcion")
+    @Column(name = "descripcion")
     private String descripcion;
 
-    @Column(name = "Precio") 
+    @Column(name = "precio") 
     private float precio;
 
-    @Column(name = "SubCategorias_SubCategoriaID") 
+    @Column(name = "subcategorias_subcategoriaid") 
     private Integer subcategoriaID;
 
-    @Column(name = "Estado")
+    @Column(name = "estado")
     private boolean estado;
 }

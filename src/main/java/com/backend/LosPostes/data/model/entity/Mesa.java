@@ -12,7 +12,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "Mesas")
+@Table(name = "mesas")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -20,18 +20,18 @@ import lombok.NoArgsConstructor;
 public class Mesa {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "MesaID")
+    @Column(name = "mesaid")
     private Integer mesaID;
     
-    @Column(name = "Numero")
+    @Column(name = "numero")
     private int numero;
     
-    @Column(name = "Capacidad")
+    @Column(name = "capacidad")
     private Integer capacidad;
 
-    @Column(name = "Condicion", length= 20) 
+    @Column(name = "condicion", length= 20) 
     private String condicion;
 
-    @Column(name = "Estado") 
+    @Column(name = "estado") 
     private Boolean estado;
 }

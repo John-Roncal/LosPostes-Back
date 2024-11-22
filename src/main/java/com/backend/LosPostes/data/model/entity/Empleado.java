@@ -12,7 +12,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "Empleados")
+@Table(name = "empleados")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -20,21 +20,21 @@ import lombok.NoArgsConstructor;
 public class Empleado {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "EmpleadoID")
+    @Column(name = "empleadoid")
     private Integer empleadoID;
     
-    @Column(name = "DNI", length = 8)
+    @Column(name = "dni", length = 8)
     private String dni;
     
-    @Column(name = "Nombre", length = 50) 
+    @Column(name = "nombre", length = 50) 
     private String nombre;
 
-    @Column(name = "Apellido", length = 50) 
+    @Column(name = "apellido", length = 50) 
     private String apellido;
 
-    @Column(name = "Cargo", length = 20)
+    @Column(name = "cargo", length = 20)
     private String cargo;
 
-    @Column(name = "Estado") 
+    @Column(name = "estado") 
     private boolean estado;
 }
