@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "clienteif")
+    @Column(name = "clienteid")
     private Integer clienteID;
     
     @Column(name = "dni", length = 8)
