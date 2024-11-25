@@ -16,4 +16,5 @@ public class AuthResponse {
     private String refreshToken;
     private Rol rol;
     private String username;
+    private Integer empleadoID;
 }

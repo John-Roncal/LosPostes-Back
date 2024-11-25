@@ -105,6 +105,7 @@ public class AuthServiceImpl implements AuthService {
                 .refreshToken(jwtService.generaRefreshToken(user))
                 .rol(user.getRol())
                 .username(user.getUsername())
+                .empleadoID(user.getEmpleadoID())
                 .build();
     }
 }
