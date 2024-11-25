@@ -24,6 +24,7 @@ public class DetalleOrdenService {
             .cantidad(detalleOrden.getCantidad())
             .subTotal(detalleOrden.getSubTotal())
             .comentario(detalleOrden.getComentario())
+            .condicion(detalleOrden.getCondicion())
             .productoID(detalleOrden.getProductoID())
             .ordenID(detalleOrden.getOrdenID())
             .build();
@@ -40,6 +41,7 @@ public class DetalleOrdenService {
         updatedDetalleOrden.setCantidad(detalleOrden.getCantidad());
         updatedDetalleOrden.setSubTotal(detalleOrden.getSubTotal());
         updatedDetalleOrden.setComentario(detalleOrden.getComentario());
+        updatedDetalleOrden.setCondicion(detalleOrden.getCondicion());
         updatedDetalleOrden.setProductoID(detalleOrden.getProductoID());
         updatedDetalleOrden.setOrdenID(detalleOrden.getOrdenID());
 

@@ -23,7 +23,7 @@ public class ProductoController {
     private ProductoService productoService;
 
     @GetMapping(path="/listar")
-    @PreAuthorize("hasAnyRole('MESERO', 'ADMIN')")
+    @PreAuthorize("hasAnyRole('MESERO', 'ADMIN', 'COCINA')")
     public ResponseEntity<Object> getProducto() {
         return JSendResponse.success(productoService.getProducto());
     }

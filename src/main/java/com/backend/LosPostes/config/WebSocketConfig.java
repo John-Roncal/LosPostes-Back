@@ -8,16 +8,18 @@ import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerCo
 
 @Configuration
 @EnableWebSocketMessageBroker
-public class WebSocketCofing implements WebSocketMessageBrokerConfigurer{
+public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
     @Override
-    public void configureMessageBroker (MessageBrokerRegistry registry){
-        registry.enableSimpleBroker("/escuchar");
-        registry.setApplicationDestinationPrefixes("/enviar");
+    public void configureMessageBroker(MessageBrokerRegistry config) {
+        config.enableSimpleBroker("/escuchar");
+        config.setApplicationDestinationPrefixes("/enviar");
     }
 
     @Override
-    public void registerStompEndpoints(StompEndpointRegistry registry){
-        registry.addEndpoint("/WSorden");
+    public void registerStompEndpoints(StompEndpointRegistry registry) {
+        registry.addEndpoint("/WSorden")
+               .setAllowedOriginPatterns("*")  // Allow all origins
+               .withSockJS();  // Enable SockJS fallback options
     }
 }

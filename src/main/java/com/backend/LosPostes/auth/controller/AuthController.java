@@ -9,15 +9,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.backend.LosPostes.auth.dto.AuthResponse;
 import com.backend.LosPostes.auth.dto.AuthenticationRequest;
-import com.backend.LosPostes.auth.dto.RegisterRequest;
 import com.backend.LosPostes.auth.dto.RefreshTokenRequest;
+import com.backend.LosPostes.auth.dto.RegisterRequest;
 import com.backend.LosPostes.auth.service.AuthService;
 
 import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/login")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin
 @RequiredArgsConstructor
 public class AuthController {
     

@@ -31,6 +31,9 @@ public class DetalleOrden {
     
     @Column(name = "comentario")
     private String comentario;
+
+    @Column(name = "condicion", length=20)
+    private String condicion;
     
     @Column(name = "productos_productoid")
     private Integer productoID;

@@ -36,8 +36,9 @@ public class SecurityConfig {
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                 .requestMatchers("/login/**").permitAll()
+                .requestMatchers("/WSorden/**").permitAll()
                 .requestMatchers("/mozo/**").hasAnyRole("MESERO", "ADMIN")
-                .requestMatchers("/admin/**").hasAnyRole("MESERO", "ADMIN")
+                .requestMatchers("/admin/**").hasAnyRole("MESERO", "ADMIN", "COCINA")
                 .anyRequest().authenticated()
             )
             .sessionManagement(sess -> 
@@ -52,7 +53,7 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost:4200"));
+        configuration.setAllowedOrigins(Arrays.asList("*"));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type", "X-Requested-With", "accept", "Origin", "Access-Control-Request-Method", "Access-Control-Request-Headers"));
         configuration.setExposedHeaders(Arrays.asList("Access-Control-Allow-Origin", "Access-Control-Allow-Credentials"));
