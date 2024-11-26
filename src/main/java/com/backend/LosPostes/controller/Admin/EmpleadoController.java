@@ -23,7 +23,6 @@ public class EmpleadoController {
     private EmpleadoService empleadoService;
 
     @GetMapping(path="/listar")
-    @PreAuthorize("hasAnyRole('ADMIN')")
     public ResponseEntity<Object> getEmpleado() {
         return JSendResponse.success(empleadoService.getEmpleado());
     }

@@ -24,7 +24,6 @@ public class SubcategoriaController {
     private SubcategoriaService subcategoriaService;
 
     @GetMapping(path="/listar")
-    @PreAuthorize("hasAnyRole('ADMIN', 'MESERO')")
     public ResponseEntity<Object> getSubcategorias() {
         return JSendResponse.success(subcategoriaService.getSubcategorias());
     }

@@ -23,7 +23,6 @@ public class MesaController {
     private MesaService mesaService;
 
     @GetMapping(path="/listar")
-    @PreAuthorize("hasAnyRole('MESERO', 'ADMIN')")
     public ResponseEntity<Object> getMesa() {
         return JSendResponse.success(mesaService.getMesa());
     }
@@ -51,7 +50,6 @@ public class MesaController {
     }
 
     @PostMapping(path="/condicion")
-    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Object> actualizarCondicion(@RequestBody Mesa mesa) {
         try {
             Mesa updatedMesa = mesaService.updateCondicion(mesa.getMesaID(), mesa.getCondicion());

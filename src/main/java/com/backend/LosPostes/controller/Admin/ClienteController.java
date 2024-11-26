@@ -23,7 +23,6 @@ public class ClienteController {
     private ClienteService clienteService;
 
     @GetMapping(path="/listar")
-    @PreAuthorize("hasAnyRole('ADMIN')")
     public ResponseEntity<Object> getCliente() {
         return JSendResponse.success(clienteService.getCliente());
     }

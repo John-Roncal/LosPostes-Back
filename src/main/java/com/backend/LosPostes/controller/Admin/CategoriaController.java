@@ -23,7 +23,6 @@ public class CategoriaController {
     private CategoriaService categoriaService;
 
     @GetMapping(path="/listar")
-    @PreAuthorize("hasAnyRole('ADMIN')")
     public ResponseEntity<Object> getCategoria() {
         return JSendResponse.success(categoriaService.getCategoria());
     }

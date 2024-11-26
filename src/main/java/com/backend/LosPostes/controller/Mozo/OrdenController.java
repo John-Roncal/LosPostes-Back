@@ -22,7 +22,6 @@ public class OrdenController {
     private OrdenService ordenService;
 
     @GetMapping(path="/listar")
-    @PreAuthorize("hasAnyRole('MESERO')")
     public ResponseEntity<Object> getOrdenes() {
         return JSendResponse.success(ordenService.getOrden());
     }
@@ -39,7 +38,6 @@ public class OrdenController {
     }
 
     @PostMapping(path="/actualizar")
-    @PreAuthorize("hasRole('MESERO')")
     public ResponseEntity<Object> actualizarOrden(@RequestBody Orden orden) {
         try {
             Orden updatedOrden = ordenService.updateOrden(orden);

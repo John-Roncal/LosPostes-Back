@@ -19,6 +19,12 @@ public class MesaService {
     }
 
     public Mesa newMesa(Mesa mesa) {
+        Optional<Mesa> existingMesa = mesaRepository.findMesaByNumeroAndEstado(mesa.getNumero());
+
+        if (existingMesa.isPresent() && mesa.getMesaID() == null) {
+            throw new RuntimeException("Ya existe una mesa con ese numero");
+        }
+
         var nuevaMesa = Mesa.builder()
             .numero(mesa.getNumero())
             .capacidad(mesa.getCapacidad())
@@ -35,7 +41,7 @@ public class MesaService {
         }
 
         Mesa updatedMesa = existingMesa.get();
-        updatedMesa.setNumero(mesa.getNumero());
+        updatedMesa.setNumero(mesa.getNumero()); //Quizás se quita
         updatedMesa.setCapacidad(mesa.getCapacidad());      
 
         return mesaRepository.save(updatedMesa);
