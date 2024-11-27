@@ -34,7 +34,7 @@ public class DetalleOrdenService {
     public DetalleOrden updateDetalleOrdenCondicion(DetalleOrden detalleOrden) {
         Optional<DetalleOrden> existingDetalleOrden = detalleOrdenRepository.findById(detalleOrden.getDetalleOrdenId());
         if (existingDetalleOrden.isEmpty()) {
-            throw new RuntimeException("No se encontró el DetalleOrden a actualizar");
+            throw new RuntimeException("No se encontró el detalle de la orden a actualizar");
         }
 
         DetalleOrden updatedDetalleOrden = existingDetalleOrden.get();
