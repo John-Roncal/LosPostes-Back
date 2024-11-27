@@ -38,9 +38,9 @@ public class DetalleOrdenController {
     }
 
     @PostMapping(path="/actualizar")
-    public ResponseEntity<Object> actualizarDetalleOrden(@RequestBody DetalleOrden detalleOrden) {
+    public ResponseEntity<Object> actualizarDetalleOrdenCondicion(@RequestBody DetalleOrden detalleOrden) {
         try {
-            DetalleOrden updatedDetalleOrden = detalleOrdenService.updateDetalleOrden(detalleOrden);
+            DetalleOrden updatedDetalleOrden = detalleOrdenService.updateDetalleOrdenCondicion(detalleOrden);
             return JSendResponse.success(updatedDetalleOrden);
         } catch (Exception e) {
             return JSendResponse.error(e.getMessage());

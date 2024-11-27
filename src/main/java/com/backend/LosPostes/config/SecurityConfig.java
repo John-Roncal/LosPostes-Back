@@ -37,7 +37,7 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                 .requestMatchers("/login/**").permitAll()
                 .requestMatchers("/WSorden/**").permitAll()
-                .requestMatchers("/mozo/**").hasAnyRole("MESERO", "ADMIN")
+                .requestMatchers("/mozo/**").hasAnyRole("MESERO", "ADMIN","COCINA")
                 .requestMatchers("/admin/**").hasAnyRole("MESERO", "ADMIN", "COCINA")
                 .anyRequest().authenticated()
             )

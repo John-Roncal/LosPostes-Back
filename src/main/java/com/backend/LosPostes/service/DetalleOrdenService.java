@@ -31,20 +31,14 @@ public class DetalleOrdenService {
         return detalleOrdenRepository.save(nuevoDetalleOrden);
     }
 
-    public DetalleOrden updateDetalleOrden(DetalleOrden detalleOrden) {
+    public DetalleOrden updateDetalleOrdenCondicion(DetalleOrden detalleOrden) {
         Optional<DetalleOrden> existingDetalleOrden = detalleOrdenRepository.findById(detalleOrden.getDetalleOrdenId());
         if (existingDetalleOrden.isEmpty()) {
             throw new RuntimeException("No se encontró el DetalleOrden a actualizar");
         }
 
         DetalleOrden updatedDetalleOrden = existingDetalleOrden.get();
-        updatedDetalleOrden.setCantidad(detalleOrden.getCantidad());
-        updatedDetalleOrden.setSubTotal(detalleOrden.getSubTotal());
-        updatedDetalleOrden.setComentario(detalleOrden.getComentario());
         updatedDetalleOrden.setCondicion(detalleOrden.getCondicion());
-        updatedDetalleOrden.setProductoID(detalleOrden.getProductoID());
-        updatedDetalleOrden.setOrdenID(detalleOrden.getOrdenID());
-
         return detalleOrdenRepository.save(updatedDetalleOrden);
     }
 }
