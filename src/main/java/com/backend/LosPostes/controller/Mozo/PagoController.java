@@ -2,7 +2,6 @@ package com.backend.LosPostes.controller.Mozo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,7 +26,6 @@ public class PagoController {
     }
 
     @PostMapping(path="/guardar")
-    @PreAuthorize("hasRole('MESERO')")
     public ResponseEntity<Object> registrarPago(@RequestBody Pago pago) {
         try {
             Pago savedPago = pagoService.newPago(pago);

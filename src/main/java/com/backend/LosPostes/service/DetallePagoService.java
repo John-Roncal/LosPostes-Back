@@ -18,14 +18,6 @@ public class DetallePagoService {
     }
     
     public DetallePago newDetallePago(DetallePago detallePago) {
-
-        var nuevoDetallePago = DetallePago.builder()
-            .detallePagoId(detallePago.getDetallePagoId())
-            .subTotal(detallePago.getSubTotal())
-            .IGV(detallePago.getIGV())
-            .total(detallePago.getTotal())
-            .pagoID(detallePago.getPagoID())
-            .build();
-        return detallePagoRepository.save(nuevoDetallePago);
+        return detallePagoRepository.save(detallePago);
     }
 }

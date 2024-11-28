@@ -36,7 +36,7 @@ public class DetallePago {
     private Double subTotal;
     
     @Column(name = "igv")
-    private Double IGV;
+    private Double igv;
 
     @Column(name = "total")
     private Double total;

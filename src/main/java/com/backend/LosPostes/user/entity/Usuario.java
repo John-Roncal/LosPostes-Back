@@ -45,7 +45,7 @@ public class Usuario implements UserDetails{
     private Integer empleadoID;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "roles_rolid")
+    @Column(name = "rol")
     private Rol rol;
 
     @Override
