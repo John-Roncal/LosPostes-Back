@@ -2,11 +2,7 @@ package com.backend.LosPostes.auth.service;
 
 import java.util.Optional;
 
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.backend.LosPostes.auth.dto.AuthResponse;
@@ -26,55 +22,43 @@ import lombok.extern.slf4j.Slf4j;
 public class AuthServiceImpl implements AuthService {
 
     private final UsuarioRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
-    private final AuthenticationManager authenticationManager;
 
     @Override
     public AuthResponse registrar(RegisterRequest request) {
-        // Si no se especifica un rol, asignar ROLE_MESERO por defecto
-        Rol userRole = (request.getRol() != null) ? request.getRol() : Rol.ROLE_MESERO;
+    Rol userRole = (request.getRol() != null) ? request.getRol() : Rol.ROLE_MESERO;
 
-        Optional<Usuario> existingUsuario = userRepository.findUsuarioByUsername(request.getUsername());
+    Optional<Usuario> existingUsuario = userRepository.findUsuarioByUsername(request.getUsername());
 
-        if (existingUsuario.isPresent()) {
-            throw new RuntimeException("Ya existe un usuario con ese username");
-        }
-        
-        var user = Usuario.builder()
-                .username(request.getUsername())
-                .password(passwordEncoder.encode(request.getPassword()))
-                .rol(userRole)
-                .estado(true)
-                .empleadoID(1)
-                .build();
-        
-        userRepository.save(user);
-        
-        return createAuthResponse(user);
+    if (existingUsuario.isPresent()) {
+        throw new RuntimeException("Ya existe un usuario con ese username");
     }
+    
+    var user = Usuario.builder()
+            .username(request.getUsername())
+            .password(request.getPassword())
+            .rol(userRole)
+            .estado(true)
+            .empleadoID(1)
+            .build();
+    
+    userRepository.save(user);
+    
+    return createAuthResponse(user);
+}
 
-    @Override
-    public AuthResponse autenticar(AuthenticationRequest request) {
-        try {
-            authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                    request.getUsername(), 
-                    request.getPassword()
-                )
-            );
-            
-            var user = userRepository.findUsuarioByUsername(request.getUsername())
-                    .orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado"));
-            
-            return createAuthResponse(user);
-            
-        } catch (AuthenticationException e) {
-            log.error("Error en la autenticación para el usuario {}: {}", 
-                    request.getUsername(), e.getMessage());
-            throw new RuntimeException("Credenciales inválidas");
-        }
+@Override
+public AuthResponse autenticar(AuthenticationRequest request) {
+    if (!userRepository.verifyPassword(request.getUsername(), request.getPassword())) {
+        log.error("Error en la autenticación para el usuario {}", request.getUsername());
+        throw new RuntimeException("Credenciales inválidas");
     }
+    
+    var user = userRepository.findUsuarioByUsername(request.getUsername())
+            .orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado"));
+    
+    return createAuthResponse(user);
+}
 
     @Override
     public AuthResponse refreshToken(String refreshToken) {
