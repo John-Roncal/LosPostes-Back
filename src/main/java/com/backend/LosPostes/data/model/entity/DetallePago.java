@@ -22,6 +22,15 @@ public class DetallePago {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "detallepagoid")
     private Integer detallePagoId;
+
+    @Column(name = "cliente_tipodocumento", length=3)
+    private String tipoDoc;
+
+    @Column(name = "cliente_numerodocumento", length=11)
+    private String numeroDoc;
+
+    @Column(name = "izipay_comprobante", length=20)
+    private String iziPay;
     
     @Column(name = "subtotal")
     private Double subTotal;

@@ -14,21 +14,12 @@ public class DetalleOrdenService {
     @Autowired
     private DetalleOrdenRepository detalleOrdenRepository;
 
-    public List<DetalleOrden> getDetalleOrden() {
-        return this.detalleOrdenRepository.findAll();
+    public List<DetalleOrden> getDetalleOrden(Integer id) {
+        return this.detalleOrdenRepository.findDetalleOrdenByOrdenID(id);
     }
     
     public DetalleOrden newDetalleOrden(DetalleOrden detalleOrden) {
-
-        var nuevoDetalleOrden = DetalleOrden.builder()
-            .cantidad(detalleOrden.getCantidad())
-            .subTotal(detalleOrden.getSubTotal())
-            .comentario(detalleOrden.getComentario())
-            .condicion(detalleOrden.getCondicion())
-            .productoID(detalleOrden.getProductoID())
-            .ordenID(detalleOrden.getOrdenID())
-            .build();
-        return detalleOrdenRepository.save(nuevoDetalleOrden);
+        return detalleOrdenRepository.save(detalleOrden);
     }
 
     public DetalleOrden updateDetalleOrdenCondicion(DetalleOrden detalleOrden) {

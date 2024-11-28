@@ -27,6 +27,9 @@ public class Pago {
     
     @Column(name = "fechapago")
     private LocalDateTime fecha;
+
+    @Column(name = "metodopago", length=20)
+    private String metodoPago;
     
     @Column(name = "estadopago", length=20)
     private String estadoPago;

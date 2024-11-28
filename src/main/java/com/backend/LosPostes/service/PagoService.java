@@ -24,6 +24,7 @@ public class PagoService {
 
         var nuevoPago = Pago.builder()
             .fecha(LocalDateTime.now())
+            .metodoPago(pago.getMetodoPago())
             .estadoPago(pago.getEstadoPago())
             .ordenID(pago.getOrdenID())
             .tipocomprobanteID(pago.getTipocomprobanteID())
