@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.backend.LosPostes.data.model.entity.Producto;
-import com.backend.LosPostes.data.repository.CategoriaRepository;
 import com.backend.LosPostes.data.repository.ProductoRepository;
+import com.backend.LosPostes.data.repository.SubcategoriaRepository;
 
 import jakarta.persistence.EntityNotFoundException;
 
@@ -18,15 +18,15 @@ public class ProductoService {
     private ProductoRepository productoRepository;
 
     @Autowired
-    private CategoriaRepository categoriaRepository;
+    private SubcategoriaRepository subcategoriaRepository;
 
     public List<Producto> getProducto() {
         return this.productoRepository.findAllActivos();
     }
     
     public Producto newProducto(Producto producto) {
-        if (!categoriaRepository.existsById(producto.getSubcategoriaID())) {
-            throw new EntityNotFoundException("Categoria no encontrada");
+        if (!subcategoriaRepository.existsById(producto.getSubcategoriaID())) {
+            throw new EntityNotFoundException("Subcategoria no encontrada");
         }
         var nuevoProducto = Producto.builder()
             .nombre(producto.getNombre())
