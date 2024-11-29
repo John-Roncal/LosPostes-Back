@@ -42,4 +42,17 @@ public class ReportController {
         }
     }
 
+    @GetMapping("/articulos")
+    public ResponseEntity<byte[]> generarReporte3() {
+        try {
+            byte[] report = reportService.generarReport("ResumenDeProductos");
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_PDF);
+            headers.add("Content-Disposition", "inline; filename=report.pdf");
+            return new ResponseEntity<>(report, headers, HttpStatus.OK);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+    }
+
 }
