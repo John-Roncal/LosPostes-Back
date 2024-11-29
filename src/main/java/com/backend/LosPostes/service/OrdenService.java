@@ -18,6 +18,10 @@ public class OrdenService{
     public List<Orden> getOrden() {
         return this.ordenRepository.findAll();
     }
+
+    public Optional<Orden> getOrdenMesaCondicion(Integer mesaid) {
+        return this.ordenRepository.findOrdenByMesaCondicion(mesaid);
+    }
     
     public Orden newOrden(Orden orden) {
 

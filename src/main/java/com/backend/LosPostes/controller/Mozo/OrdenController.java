@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,6 +25,11 @@ public class OrdenController {
     @GetMapping(path="/listar")
     public ResponseEntity<Object> getOrdenes() {
         return JSendResponse.success(ordenService.getOrden());
+    }
+
+    @GetMapping(path="/obtenerOrden/{mesaId}")
+    public ResponseEntity<Object> getOrdenMesaCondicion(@PathVariable("mesaId") Integer mesaid) {
+        return JSendResponse.success(ordenService.getOrdenMesaCondicion(mesaid));
     }
 
     @PostMapping(path="/guardar")
